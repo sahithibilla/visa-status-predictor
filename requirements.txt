@@ -4,3 +4,5 @@ numpy
 scikit-learn
 gunicorn
 flask-cors
+flask_sqlalchemy
+psycopg2-binary
