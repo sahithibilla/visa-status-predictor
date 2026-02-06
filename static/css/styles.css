@@ -1,0 +1,1034 @@
+/* ============================
+   VISA PREDICTOR - BASE STYLES
+   ============================ */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+
+/* Typography */
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+
+/* Layout */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Header */
+
+.header {
+    background: var(--card-background);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.header-brand svg {
+    width: 32px;
+    height: 32px;
+    color: var(--primary-color);
+}
+
+.header-brand span {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* Cards */
+
+.card {
+    background: var(--card-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+/* Buttons */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--background-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+
+/* Forms */
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--card-background);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary);
+}
+
+select.form-control {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+}
+
+.form-select-wrapper {
+    position: relative;
+}
+
+
+/* Auth Pages */
+
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header svg {
+    width: 64px;
+    height: 64px;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Alert Messages */
+
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.alert-error {
+    background: #fef2f2;
+    color: var(--danger-color);
+    border: 1px solid #fecaca;
+}
+
+.alert-success {
+    background: #f0fdf4;
+    color: var(--success-color);
+    border: 1px solid #bbf7d0;
+}
+
+.alert-warning {
+    background: #fffbeb;
+    color: var(--warning-color);
+    border: 1px solid #fde68a;
+}
+
+
+/* Dashboard Layout */
+
+.dashboard {
+    display: grid;
+    gap: 2rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* Stats Cards */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--card-background);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+.stat-icon.blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.stat-icon.green {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.stat-icon.red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.stat-icon.yellow {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.stat-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+
+/* Prediction Form */
+
+.prediction-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.form-row {
+    display: contents;
+}
+
+
+/* Prediction Result */
+
+.prediction-result {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.prediction-result.approved {
+    background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+    border: 2px solid #86efac;
+}
+
+.prediction-result.rejected {
+    background: linear-gradient(135deg, #fef2f2, #fff1f2);
+    border: 2px solid #fca5a5;
+}
+
+.prediction-result svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.prediction-result.approved svg {
+    color: var(--success-color);
+}
+
+.prediction-result.rejected svg {
+    color: var(--danger-color);
+}
+
+.prediction-result h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.prediction-result.approved h2 {
+    color: var(--success-color);
+}
+
+.prediction-result.rejected h2 {
+    color: var(--danger-color);
+}
+
+.prediction-result .processing-time {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 1rem;
+}
+
+
+/* Tables */
+
+.table-container {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-background);
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background: var(--background-color);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: var(--background-color);
+}
+
+
+/* Status Badges */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    .header {
+        padding: 1rem;
+    }
+    .header-brand span {
+        display: none;
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .prediction-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Utility Classes */
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+/* ============================
+   VISA THEME STYLES
+   Passport stamps, airplane icons, travel theme
+   ============================ */
+
+/* Passport Stamp Effect */
+.passport-stamp {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 3px solid;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    transform: rotate(-2deg);
+}
+
+.passport-stamp.approved {
+    color: #059669;
+    border-color: #059669;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.passport-stamp.rejected {
+    color: #dc2626;
+    border-color: #dc2626;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.passport-stamp::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px dashed;
+    border-radius: 12px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.passport-stamp.approved::before {
+    border-color: #10b981;
+}
+
+.passport-stamp.rejected::before {
+    border-color: #ef4444;
+}
+
+/* Visa Stamp Animation */
+.visa-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #fef3c7, #fffbeb);
+    border: 2px solid #f59e0b;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #92400e;
+    transform: rotate(-1deg);
+    box-shadow: 2px 2px 0 rgba(245, 158, 11, 0.3);
+}
+
+.visa-stamp svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Airplane Icon Styles */
+.airplane-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.airplane-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Travel Badge */
+.travel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 1px solid #93c5fd;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #1e40af;
+    font-weight: 500;
+}
+
+.travel-badge svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Globe Icon */
+.globe-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.globe-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Passport Card Effect */
+.passport-card {
+    background: linear-gradient(135deg, #1e3a5f, #0f172a);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.passport-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.passport-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.passport-card .passport-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.passport-card h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.passport-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+/* Stamp Collection Decoration */
+.stamp-decoration {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px dashed;
+    border-radius: 50%;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.stamp-decoration.top-right {
+    top: 20px;
+    right: 20px;
+    transform: rotate(45deg);
+    border-color: #3b82f6;
+}
+
+.stamp-decoration.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    transform: rotate(-30deg);
+    border-color: #8b5cf6;
+}
+
+/* Flight Path Animation */
+.flight-path {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.flight-path::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #10b981);
+}
+
+.flight-path::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #3b82f6;
+    border-radius: 50%;
+    animation: flightPulse 2s infinite;
+}
+
+@keyframes flightPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* Entry/Exit Stamp */
+.entry-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #10b981;
+    border-radius: 4px;
+    color: #059669;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transform: rotate(-2deg);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.exit-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #ef4444;
+    border-radius: 4px;
+    color: #dc2626;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transform: rotate(2deg);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+/* Document with Stamp Effect */
+.document-stamp {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: var(--shadow-md);
+}
+
+.document-stamp::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* Welcome Message with Globe */
+.welcome-travel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+}
+
+.welcome-travel .globe {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.welcome-travel .globe svg {
+    width: 24px;
+    height: 24px;
+}
+
+.welcome-travel h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+}
+
+.welcome-travel p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Prediction Card with Stamp */
+.prediction-card-stamped {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-md);
+}
+
+.stamp-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    border: 3px solid;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: rotate(-15deg);
+    opacity: 0.9;
+}
+
+.stamp-overlay.approved {
+    color: #059669;
+    border-color: #059669;
+}
+
+.stamp-overlay.rejected {
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+/* Timeline with Flight Icons */
+.travel-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.travel-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #10b981);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 3px solid #3b82f6;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item.completed::before {
+    background: #10b981;
+    border-color: #10b981;
+}
+
+.timeline-item.active::before {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}

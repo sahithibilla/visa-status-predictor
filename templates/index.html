@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Visa Status Predictor & Processing Time Estimator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <a href="/" class="header-brand">
+                <div class="airplane-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    </svg>
+                </div>
+                <span>Visa Status Predictor & Processing Time Estimator</span>
+            </a>
+            <nav class="header-nav">
+                <div class="travel-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg> {{ session.username }}
+                </div>
+                <a href="/logout" class="btn btn-secondary btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg> Logout
+                </a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container" style="background-image: url('{{ url_for('static', filename='images/Traveling as gift_ toy airplane with passports and gift box. jpeg') }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="dashboard">
+                <!-- Welcome Banner -->
+                <div class="welcome-travel">
+                    <div class="globe">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>Plan Your Journey ✈️</h3>
+                        <p>Enter your details to predict visa approval and estimated processing time</p>
+                    </div>
+                </div>
+
+                <!-- Visa Application Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="globe-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2>Visa Application Form</h2>
+                                <p>Fill in your details below to get your visa prediction</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST" action="/predict">
+                        <div class="prediction-form">
+                            <div class="form-group">
+                                <label class="form-label" for="education">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                    </svg>
+                                    Education Level *
+                                </label>
+                                <select name="education" id="education" class="form-control" required>
+                                    <option value="" disabled selected>Select education level</option>
+                                    <option value="High School">🎓 High School</option>
+                                    <option value="Bachelor">📜 Bachelor's Degree</option>
+                                    <option value="Master">📚 Master's Degree</option>
+                                    <option value="Doctorate">🎓 Doctorate / PhD</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="job_experience">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                    Job Experience *
+                                </label>
+                                <select name="job_experience" id="job_experience" class="form-control" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">✅ Yes - Has Professional Experience</option>
+                                    <option value="0">❌ No - No Experience</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="job_training">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                    </svg>
+                                    Job Training *
+                                </label>
+                                <select name="job_training" id="job_training" class="form-control" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">✅ Yes - Completed Training Program</option>
+                                    <option value="0">❌ No - No Training</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="wage">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                    Annual Wage ($) *
+                                </label>
+                                <input type="number" name="wage" id="wage" class="form-control" placeholder="Enter annual wage (e.g., 75000)" min="0" step="1000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="full_time">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    Full Time Position *
+                                </label>
+                                <select name="full_time" id="full_time" class="form-control" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Y">💼 Yes - Full Time Position</option>
+                                    <option value="N">⏰ No - Part Time</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="continent">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                    Continent of Origin *
+                                </label>
+                                <select name="continent" id="continent" class="form-control" required>
+                                    <option value="" disabled selected>Select continent</option>
+                                    <option value="Asia">🌏 Asia</option>
+                                    <option value="Europe">🌍 Europe</option>
+                                    <option value="Africa">🌍 Africa</option>
+                                    <option value="North America">🌎 North America</option>
+                                    <option value="South America">🌎 South America</option>
+                                    <option value="Oceania">🌏 Oceania / Australia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="experience">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                                    </svg>
+                                    Experience Score (0-10) *
+                                </label>
+                                <input type="number" name="experience" id="experience" class="form-control" placeholder="Rate your experience (0-10)" min="0" max="10" step="0.1" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="filing_date">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem;">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    Filing Date *
+                                </label>
+                                <input type="date" name="filing_date" id="filing_date" class="form-control" value="2025-01-01" required>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 1rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 2L11 13"></path>
+                                    <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                                </svg>
+                                ✈️ Predict Visa Status
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Prediction Result -->
+                    {% if visa_status %}
+                    <div class="prediction-card-stamped mt-3">
+                        <div class="airplane-icon" style="transform: scale(1.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2L11 13"></path>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                            </svg>
+                        </div>
+
+                        <div style="flex: 1; text-align: center;">
+                            <h3 style="margin: 0; font-size: 1.5rem; color: {% if visa_status == 'Approved' %}#059669{% else %}#dc2626{% endif %};">
+                                Estimated Visa Status: <strong>{{ visa_status }}</strong>
+                            </h3>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem;">
+                                🕐 Estimated Processing Time: <strong>{{ processing_time }} days</strong>
+                            </p>
+                        </div>
+
+                        <div class="airplane-icon" style="transform: scale(1.2) rotate(180deg);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 2L11 13"></path>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Context-Aware Suggestions -->
+                    {% if suggestions %}
+                    <div class="mt-3">
+                        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color);">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg> 💡 Smart Suggestions
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                            {% for suggestion in suggestions %}
+                            <div class="card" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-left: 4px solid var(--primary-color);">
+                                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                                    <span style="font-size: 2rem;">{{ suggestion.icon }}</span>
+                                    <div>
+                                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">{{ suggestion.title }}</h4>
+                                        <p style="margin: 0; color: var(--text-secondary);">{{ suggestion.message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

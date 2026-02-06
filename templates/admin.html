@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Visa Status Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <a href="/admin" class="header-brand">
+                <div class="airplane-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    </svg>
+                </div>
+                <span>Admin Dashboard</span>
+            </a>
+            <nav class="header-nav">
+                <div class="travel-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Administrator
+                </div>
+                <a href="/logout" class="btn btn-secondary btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container">
+            <div class="dashboard">
+                <!-- Stats Cards with Travel Theme -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>{{ total }}</h3>
+                            <p>Total Applications</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>{{ approved }}</h3>
+                            <p>Approved Visas</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>{{ rejected }}</h3>
+                            <p>Denied Visas</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon yellow">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>{{ avg_time }} days</h3>
+                            <p>Avg Processing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model Performance Section -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>📊 Model Performance Metrics</h2>
+                        <p>Performance metrics for classification and regression models</p>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="card" style="background: linear-gradient(135deg, #eff6ff, #f0fdf4);">
+                            <div class="card-header">
+                                <h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem; color: #2563eb;">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                    Classifier (Visa Status)
+                                </h3>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Random Forest - 100 Trees</p>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #10b981;">89%</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Accuracy</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;">87%</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Precision</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6;">91%</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Recall</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #f59e0b;">89%</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">F1 Score</div>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">Trained on 25000 samples</p>
+                        </div>
+
+                        <div class="card" style="background: linear-gradient(135deg, #fef3c7, #fff7ed);">
+                            <div class="card-header">
+                                <h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.5rem; color: #d97706;">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                    Regressor (Processing Time)
+                                </h3>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Linear Regression</p>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #10b981;">72%</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">R2 Score</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #3b82f6;">28.5</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">MAE (days)</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6;">42.3</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">RMSE (days)</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: white; border-radius: 8px;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: #f59e0b;">25000</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Training Samples</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Prediction Visualizations -->
+                {% if total > 0 %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>🌍 Live Prediction Analytics</h2>
+                        <p>Real-time visualization of visa predictions across regions</p>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>✅ Approval Distribution</h3>
+                            </div>
+                            <div style="position: relative; height: 200px;">
+                                <canvas id="approvalDistChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>⏱️ Processing Time Distribution</h3>
+                            </div>
+                            <div style="position: relative; height: 200px;">
+                                <canvas id="timeDistChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🎓 By Education Level</h3>
+                            </div>
+                            <div style="position: relative; height: 200px;">
+                                <canvas id="educationChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🌏 By Continent</h3>
+                            </div>
+                            <div style="position: relative; height: 200px;">
+                                <canvas id="continentChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- All Prediction Records -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📋 Application Records</h2>
+                        <p>Complete history of all visa prediction requests</p>
+                    </div>
+
+                    {% if logs %}
+                    <div class="table-container" style="max-height: 500px; overflow-y: auto;">
+                        <table>
+                            <thead style="position: sticky; top: 0;">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User</th>
+                                    <th>Education</th>
+                                    <th>Exp</th>
+                                    <th>Training</th>
+                                    <th>Wage</th>
+                                    <th>FT</th>
+                                    <th>Continent</th>
+                                    <th>Score</th>
+                                    <th>Filing</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for log in logs %}
+                                <tr>
+                                    <td>#{{ log[0] }}</td>
+                                    <td>{{ log[1] }}</td>
+                                    <td>{{ log[2] }}</td>
+                                    <td>{{ 'Yes' if log[3] == 1 else 'No' }}</td>
+                                    <td>{{ 'Yes' if log[4] == 1 else 'No' }}</td>
+                                    <td>${{ log[5]|int }}</td>
+                                    <td>{{ 'Yes' if log[6] == 'Y' else 'No' }}</td>
+                                    <td>{{ log[7] }}</td>
+                                    <td>{{ log[8] }}</td>
+                                    <td>{{ log[9] }}</td>
+                                    <td>
+                                        <span class="badge badge-{{ log[10].lower() }}">
+                                            {% if log[10] == 'Approved' %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.25rem;">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                            {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 0.25rem;">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                            {% endif %}
+                                            {{ log[10] }}
+                                        </span>
+                                    </td>
+                                    <td>{{ log[11] }} days</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning" style="text-align: center;">
+                        No application records available yet.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+
+        <script>
+            var statusData = {{ status_stats | tojson }};
+            var eduData = {{ edu_stats | tojson }};
+            var contData = {{ cont_stats | tojson }};
+            var timeData = {{ processing_times | tojson }};
+
+            console.log('Status Data:', statusData);
+            console.log('Education Data:', eduData);
+            console.log('Continent Data:', contData);
+            console.log('Time Data:', timeData);
+
+            if (document.getElementById('approvalDistChart')) {
+                new Chart(document.getElementById('approvalDistChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(statusData),
+                        datasets: [{
+                            data: Object.values(statusData),
+                            backgroundColor: ['#10b981', '#ef4444'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                });
+            }
+
+            if (document.getElementById('timeDistChart')) {
+                var bins = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300];
+                var binCounts = new Array(bins.length - 1).fill(0);
+                timeData.forEach(function(t) {
+                    for (var i = 0; i < bins.length - 1; i++) {
+                        if (t >= bins[i] && t < bins[i + 1]) { binCounts[i]++; break; }
+                    }
+                });
+                new Chart(document.getElementById('timeDistChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: bins.slice(0, -1).map(function(b) { return b + '+'; }),
+                        datasets: [{ label: 'Applications', data: binCounts, backgroundColor: '#3b82f6', borderRadius: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true }, x: { grid: { display: false } } } }
+                });
+            }
+
+            if (document.getElementById('educationChart')) {
+                new Chart(document.getElementById('educationChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(eduData),
+                        datasets: [{ label: 'Total', data: Object.keys(eduData).map(function(k) { return eduData[k].total; }), backgroundColor: '#8b5cf6', borderRadius: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true }, y: { grid: { display: false } } } }
+                });
+            }
+
+            if (document.getElementById('continentChart')) {
+                new Chart(document.getElementById('continentChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(contData),
+                        datasets: [{ label: 'Total', data: Object.keys(contData).map(function(k) { return contData[k].total; }), backgroundColor: '#f59e0b', borderRadius: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true }, y: { grid: { display: false } } } }
+                });
+            }
+        </script>
+    </div>
+</body>
+
+</html>
