@@ -8,11 +8,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import random
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://visa_users_db_user:PoqfB4jQ7SOOXzwB60cOHNuFDv0BfrLO@dpg-d631o6hr0fns7398qqk0-a.oregon-postgres.render.com/visa_users_db"
+
 
 
 app = Flask(__name__)
 app.secret_key = "secret123"
+
+
 
 # Initialize database tables
 from db import create_tables
@@ -21,6 +23,9 @@ create_tables()
 # ---------------- DATABASE ----------------
 def get_db():
     return sqlite3.connect("users.db")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://visa_users_db_user:PoqfB4jQ7SOOXzwB60cOHNuFDv0BfrLO@dpg-d631o6hr0fns7398qqk0-a.oregon-postgres.render.com/visa_users_db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # ---------------- LOAD MODELS ----------------
 classifier = pickle.load(open("best_classifier.pkl", "rb"))
