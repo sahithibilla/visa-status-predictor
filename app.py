@@ -424,6 +424,21 @@ def signup():
         username = request.form.get("username")
         password = generate_password_hash(request.form.get("password"))
         role = request.form.get("role")
+        
+        # Check if "sahithi" is the only admin allowed
+        if role == "admin":
+            if username.lower() != "sahithi":
+                return render_template("signup.html", error="Only one admin (sahithi) is allowed. Please contact the administrator.")
+            
+            # Check if sahithi admin already exists
+            db = get_db()
+            cur = db.cursor()
+            cur.execute("SELECT username FROM users WHERE role='admin'")
+            existing_admin = cur.fetchone()
+            db.close()
+            
+            if existing_admin:
+                return render_template("signup.html", error="Admin account already exists. Only one admin is allowed.")
 
         try:
             db = get_db()
@@ -436,7 +451,7 @@ def signup():
             db.close()
             return redirect("/login")
         except:
-            return "User already exists"
+            return render_template("signup.html", error="User already exists")
 
     return render_template("signup.html")
 
